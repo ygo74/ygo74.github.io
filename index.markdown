@@ -5,6 +5,8 @@
 layout: home
 ---
 
+@import "{{ site.theme }}";
+
 # Yannick GOBERT
 
 Welcome

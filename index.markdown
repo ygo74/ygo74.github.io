@@ -5,6 +5,9 @@ nav_order: 1
 has_children: false
 ---
 
-# Yannick GOBERT
+## Who am I
 
-Welcome To my online presentation and posts about Infrastructure As Code
+Discover My experiences and my profile : [Yannick GOBERT](/about/)
+
+## Goals
+

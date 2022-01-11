@@ -13,4 +13,4 @@ Discover My experiences and my profile : [Yannick GOBERT](/about/)
 
 ## DevOps platform blue print
 
-![DevOps platform overview](_images/DevOps_platform_BluePrint.png)
+![DevOps platform overview](/_images/devopsplatformblueprint.png)

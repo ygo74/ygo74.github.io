@@ -12,13 +12,14 @@ Discover My experiences and my profile : [Yannick GOBERT](/about/)
 
 ## Goals
 
-<ul>
+Hello
+<!-- <ul>
 {% for item in site.menus.header %}
   <li class="menu-item-{{ loop.index }}">
     <a href="{{ item.url }}" title="Go to {{ item.title }}">{{ item.title }}</a>
   </li>
 {% endfor %}
-</ul>
+</ul> -->
 
 ## DevOps platform blue print
 

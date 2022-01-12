@@ -58,3 +58,5 @@ plugins:
 #   - vendor/ruby/
 
 theme: jekyll-theme-hacker
+gems:
+ - jekyll-menus

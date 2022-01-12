@@ -13,7 +13,6 @@
   <body>
 
     <header>
-        <h1>hello</h1>
       <div class="container">
         <a id="a-title" href="{{ '/' | relative_url }}">
           <h1>{{ site.title | default: site.github.repository_name }}</h1>
@@ -28,13 +27,14 @@
           <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
         </section>
       </div>
-      <nav>
-        {% assign menu = site.menus.header %}
-        {% include menus.html %}
-      </nav>
     </header>
 
     <div class="container">
+        <nav>
+            {% assign menu = site.menus.header %}
+            {% include menus.html %}
+        </nav>
+
       <section id="main_content">
         {{ content }}
       </section>

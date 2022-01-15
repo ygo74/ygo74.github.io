@@ -280,6 +280,7 @@ DEPENDENCIES
   github-pages (~> 219)
   jekyll-feed (~> 0.12)
   jekyll-menus (~> 0.6.0)
+  jekyll-paginate
   jekyll-theme-dinky (~> 0.2)
   tzinfo (~> 1.2)
   tzinfo-data

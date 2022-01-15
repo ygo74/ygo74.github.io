@@ -1,9 +1,7 @@
 ---
 layout: default
-title: Security
+title: Environments Management
 category: governance
 parent: Governance
-nav_order: 2
+nav_order: 3
 ---
-
-## Goal

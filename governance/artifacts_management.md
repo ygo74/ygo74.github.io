@@ -1,9 +1,7 @@
 ---
 layout: default
-title: Security
+title: Artifacts Management
 category: governance
 parent: Governance
-nav_order: 2
+nav_order: 6
 ---
-
-## Goal

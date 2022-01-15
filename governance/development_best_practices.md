@@ -1,9 +1,7 @@
 ---
 layout: default
-title: Security
+title: Development Best practices
 category: governance
 parent: Governance
-nav_order: 2
+nav_order: 7
 ---
-
-## Goal

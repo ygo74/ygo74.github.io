@@ -23,9 +23,6 @@ It will allow to share lessons learned and will allow to share personal implemen
 
 ![DevOps platform overview](assets/images/devopsplatformblueprint.png)
 
-DevOps
-{: .label }
-
 Governance
 {: .label .label-blue }
 

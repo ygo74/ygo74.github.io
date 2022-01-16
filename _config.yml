@@ -89,7 +89,7 @@ search:
   # Supports true or false (default)
   button: false
 
-logo: "/assets/images/512px-Devops-toolchain.svg.png"
+logo: "/assets/images/1024px-Devops-toolchain.svg.png"
 
 aux_links:
   "View Github repositories":

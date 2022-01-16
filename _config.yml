@@ -88,3 +88,17 @@ search:
   # Enable or disable the search button that appears in the bottom right corner of every page
   # Supports true or false (default)
   button: false
+
+logo: "/assets/images/512px-Devops-toolchain.svg.png"
+
+aux_links:
+  "View Github repositories":
+    - "//github.com/ygo74"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: true
+
+heading_anchors: true
+
+# color_scheme: dark
+

@@ -22,8 +22,8 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-menus", "~> 0.6.0"
   gem "jekyll-paginate"
-  gem 'jemoji'
-  gem 'jekyll-avatar'
+  gem 'jemoji', "~> 0.12.0"
+  gem 'jekyll-avatar', "~> 0.7.0"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

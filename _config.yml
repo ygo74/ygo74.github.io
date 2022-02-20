@@ -37,6 +37,8 @@ remote_theme: pdmosses/just-the-docs@callouts
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 - jekyll-menus
+- jemoji
+- jekyll-avatar
 
 
 # Exclude from processing.

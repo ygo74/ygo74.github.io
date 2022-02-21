@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 {: .note-title }
-> {% avatar ygo74 %} Who am I
+> {% avatar ygo74 %}{: .mr-2 } Who am I
 >
 > From a full developer profile with strong knowledge in .Net, I migrated to become a DevOps Engineer after several experiences like Sharepoint Architect, Middleware Administrator, Team Leader, Solution Architect
 

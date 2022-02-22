@@ -40,62 +40,80 @@ permalink: /about/
 
 ## Skills
 
+### DevOps
+
+| Tools                  | Experience Level    | Experience |
+| ---------------------- |:-------------------:| ---------- |
+| Ansible                | :+1: :+1: :+1: :+1: | Roles and playbooks developments<br />Inventory plugins<br />Molecule unit tests |
+| Ansible Tower          | :+1: :+1: :+1:      | Ansible Tower Configuration and deployment |
+| Azure DevOps Server    | :+1: :+1: :+1:      | Configuration and deployment<br />Linux and Windows build agents deployment Automation<br />Pipeline templates<br />Extensions development |
+| Continuous Integration | :+1: :+1: :+1:      | Package versioning<br />Build<br />Unit tests<br />Code quality<br />Code coverage<br />Package publishing<br />Vulnerabilities scanning |
+| Powershell DSC         | :+1: :+1:           | Resources Development<br />SharePoint deployment automation |
+| Jfrog Artifactory      | :+1: :+1:           | Configuration and deployment automation<br />Repository structure<br />Groovy Policy<br />Promotion |
+| Jenkins                | :+1: :+1:           | Configuration and deployment automation<br />Linux and Windows build agents deployment Automation<br />Scripted and declarative pipelines <br />Library  |
+| Markdown               | :+1: :+1:           | Documentation with mkdocs, Jekyll|
+| Continuous Delivery    | :+1:                | |
+
 ### Programming
 
-| Language   | Experience Level    |
-| ---------- |:-------------------:|
-| Powershell | :+1: :+1: :+1: :+1: |
-| .Net       | :+1: :+1: :+1:      |
-| Python     | :+1:                |
-| Nodejs     | :+1:                |
+| Language   | Knowledge Level     | Experience |
+| ---------- |:-------------------:| ---------- |
+| Powershell | :+1: :+1: :+1: :+1: | Business Objects Automation Module<br />Kerberos Configuration<br />Azure Idempotent automation<br />Ansible Modules<br /> |
+| .Net       | :+1: :+1: :+1:      | Relationships Managers web portal<br />Breast cancer screening follow-up<br />Supermarket order management<br />Emergency room management<br />Infrastructure Inventory Management |
+| Groovy     | :+1: :+1:           | Jfrog Artifactory custom policy<br />Jenkins automation Library<br /> |
+| Python     | :+1:                | Ansible modules, plugins and lookups<br />Firewall rules unit tests |
+| Nodejs     | :+1:                | Ansible structure generator with Yeoman<br /> |
 
 ### Operating Systems
 
-| Operating System   | Experience Level    |
-| ------------------ |:-------------------:|
-| Windows            | :+1: :+1: :+1:      |
-| Linux RHEL         | :+1:                |
+| Operating System   | Knowledge Level     | Experience |
+| ------------------ |:-------------------:| ---------- |
+| Windows            | :+1: :+1: :+1:      | |
+| Linux RHEL         | :+1:                | |
 
-### Application Server / Web Server
+### Execution platforms
 
-| Server     | Experience Level    |
-| ---------- |:-------------------:|
-| IIS        | :+1: :+1: :+1: :+1: |
-| Apache     | :+1: :+1:           |
-| Tomcat     | :+1:                |
+| Server              | Experience Level    | Experience |
+| ------------------- |:-------------------:| ---------- |
+| IIS                 | :+1: :+1: :+1: :+1: | Deployment automation<br />Websites configuration<br />Application pools configuration<br /> |
+| Sharepoint (2007)   | :+1: :+1: :+1: :+1: | Architecture<br />Style integration<br />features development<br />Reverse lookup field development<br />Trainings |
+| Docker              | :+1: :+1:           | Images development<br />Multi stage<br />Multi Arch |
+| Apache              | :+1: :+1:           | Deployment automation<br />Reverse Proxy configuration<br /> |
+| Tomcat              | :+1:                | Deployment automation |
+| Kunernetes          | :+1:                | AKS deployment<br />Helm charts |
+| Talend              | :+1:                | TAC Administration<br />Jobs development |
+| Business Object     | :+1:                | Configuration and deployment<br />.Net SDK Integration |
+| MQ Series           | :+1:                | .Net SDK Integration |
+| RabbitMQ            | :+1:                | Configuration and deployment automation<br />Queues, exchange and topics configuration<br />.Net SDK Integration |
+
+### Infrastructure Tools
+
+| Tools               | Experience Level    | Experience |
+| ------------------- |:-------------------:| ---------- |
+| Efficient IP        | :+1:                | API Integration |
+| Tufin               | :+1:                | SecureChange / SecureTrack API Integration |
+| Checkpoint Firewall | :+1:                | Rules and Objects Management with Ansible<br />Rules extraction with command line client |
+
+### Cloud
+
+| Cloud Provider         | Experience Level    | Experience |
+| ---------------------- |:-------------------:| ---------- |
+| Azure                  | :+1:                | |
 
 ### Tools
 
 | Tools               | Experience Level    |
 | ------------------- |:-------------------:|
-| Ansible             | :+1: :+1: :+1: :+1: |
-| Azure DevOps Server | :+1: :+1: :+1:      |
-| Docker              | :+1: :+1:           |
-| Sharepoint          | :+1: :+1:           |
-| Jenkins             | :+1: :+1:           |
-| Kunernetes          | :+1:                |
-| Talend              | :+1:                |
-| Business Object     | :+1:                |
-| MQ Series           | :+1:                |
-| RabbitMQ            | :+1:                |
-
-### DevOps
-
-| Tools                  | Experience Level    |
-| ---------------------- |:-------------------:|
-| Git                    | :+1: :+1: :+1:      |
-| Continuous Integration | :+1: :+1: :+1:      |
-| Continuous Delivery    | :+1: :+1: :+1:      |
-| Msbuild                | :+1: :+1: :+1:      |
-| Nuget                  | :+1: :+1: :+1:      |
-| Maven                  | :+1: :+1:           |
-| Npm                    | :+1: :+1:           |
-
-### Cloud
-
-| Cloud Provider         | Experience Level    |
-| ---------------------- |:-------------------:|
-| Azure                  | :+1:                |
+| PowershellGet       | :+1: :+1: :+1:      |
+| Git                 | :+1: :+1:           |
+| Msbuild             | :+1: :+1:           |
+| Nuget               | :+1: :+1:           |
+| Maven               | :+1: :+1:           |
+| Npm                 | :+1: :+1:           |
+| Wireshark           | :+1: :+1:           |
+| Messages Analyser   | :+1: :+1:           |
+| Fiddler             | :+1: :+1:           |
+| Sysinternal         | :+1:                |
 
 ## Education
 

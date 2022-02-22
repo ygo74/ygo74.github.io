@@ -45,3 +45,4 @@ It is important to have a clean and well defined methodology for development ste
 ## Sources
 
 * [Clean Architecture](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures#clean-architecture)
+* [Inventory API Implementation](/Inventory.API)

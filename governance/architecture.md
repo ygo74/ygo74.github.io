@@ -16,6 +16,11 @@ Enterprise architects should support the initiative and define high levels rules
 {:toc}
 </details>
 
+## DevOps specific organization
+
+![DevOps committee overview](../assets/images/devopscommittee.png)
+
+
 ## Artifacts Management
 {: .text-blue-300 }
 

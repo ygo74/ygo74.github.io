@@ -45,11 +45,13 @@ The committee's legitimacy must be natural based on members experiences in the d
 >
 > It is important that members will be free to work for the committee.
 
-### High level rules scope
+### DevOps goals
 {: .text-blue-200 }
 
+### Teams needs and issues identification
+{: .text-blue-200 }
 
-### High level rules scope
+### Rules and best practices defintion
 {: .text-blue-200 }
 
 * [Artifacts Management](./artifacts_management.md)

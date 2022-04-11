@@ -17,25 +17,46 @@ Enterprise architects should support the initiative and define high levels rules
 </details>
 
 ## DevOps specific organization
+{: .text-blue-300 }
+
+We need to define an organization to support DevOps deployment and strategy. The main componenrt of this organization is to have a committee with the followings purpose :
+
+* Define a clear goal of DevOps deployment
+* Identify teams' needs and issues
+* Define rules and best practices
+* Report to CTO and domain's heads
+* Ensure communication to all IT
 
 ![DevOps committee overview](../assets/images/devopscommittee.png)
 
+### Committee members
+{: .text-blue-200 }
 
-## Artifacts Management
+The committee's legitimacy must be natural based on members experiences in the development, deployment and infrastructure :
+
+* Enterprise architect or members of the enterprise architecture team
+* Solution architects in the main developoment technologies used by the enterprise
+* Infrastructure Experts
+
+{: .important-title }
+> Workload estimation
+>
+> To be able to realize their own tasks inside the committee and contribute to topics, each member should schedule **5 Man days / Months**
+>
+> It is important that members will be free to work for the committee.
+
+### High level rules scope
+{: .text-blue-200 }
+
+
+### High level rules scope
+{: .text-blue-200 }
+
+* [Artifacts Management](./artifacts_management.md)
+
+## Communication tools
 {: .text-blue-300 }
 
-* There is two kinds of artifacts produced by developers which have a different lifecycle and management rules
-
-  * Application : A full application or an application part (executable component / micro service)
-  * Package : A reusable block (library) which can be shared inside same application's components or accross applications
-
-* Artifacts are immutable
-
-* Artifacts are securely stored in a central repository
-
-* Artifacts can be rebuild
-
-* Artifacts are versioned with semantic or calendar scheme
 
 ## Development best practices
 {: .text-blue-300 }

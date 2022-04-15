@@ -3,7 +3,8 @@ layout: default
 title: Artifacts Repository
 parent: Platforms support
 nav_order: 4
-has_children: false
+has_children: true
+mermaid: true
 ---
 
 <details open markdown="block">
@@ -18,6 +19,13 @@ has_children: false
 You can read below a study to choose the best artifacts repository platform which will fit your needs. For this study, I compare several artifacts repository platform against a known platform reference **[Artifactory](https://www.jfrog.com/confluence/display/JFROG/Get+Started)**.
 
 Jfrog Artifactory is a full platform with lot of features to store, distribute, manage artifacts and scan vulnerabilities. Jfrog Artifactory is a leader in this domain but comes with a lot of features that maybe you will never use and has also important cost if you want to use the complete tools.
+
+The study will compare:
+
+* JFrog Artifactory : Reference platform in **V7.x**
+* Azure DevOps Services Artifacts in version **2022-04**
+* Sonatype Nexus Repository in **V3.x**
+* Indeo ProGet in **V6.x**
 
 ## Requirements Definition
 {: .text-blue-300 }
@@ -66,6 +74,116 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 > **Governance:**
 >
 > * Packages or application must be validated before production deployment
+> * Packages storage, naming conventions and versioning schemes must be enforced
+
+## Packages types support
+{: .text-blue-300 }
+
+1. Determine the package's type that you need to support in your enterprise for development activities and for infrastructure automation.
+2. Define a weight of importance
+
+    1. Package type is mandatory because these technologies are currently used, belong of supported technologies and are not covered by an other tool
+
+    2. Package type could become a futur official technologie due to its popularity
+
+    3. Package type could be a plus for your enterprise to handle specific use case which are not covered
+
+    4. You will not plan to use this technologie
+
+
+| Package Type             | Priority | Artifactory | Azure DevOps Service | Nexus  | ProGet  |
+| ------------------------ |:--------:|:-----------:|:--------------------:|:------:|:-------:|
+| Alpine                   | 1        | ✅          | ❌                  | ☑️ (2) | ❌     |
+| Helm                     | 1        | ✅          | ❌                  | ✅     | ✅     |
+| Maven                    | 1        | ✅          | ✅                  | ✅     | ✅     |
+| npm                      | 1        | ✅          | ✅                  | ✅     | ✅     |
+| NuGet                    | 1        | ✅          | ✅                  | ✅     | ✅     |
+| PyPI                     | 1        | ✅          | ✅                  | ✅     | ✅     |
+| Generic                  | 1        | ✅          | ☑️ (1)              | ✅     | ✅     |
+| CRAN                     | 1        | ✅          | ❌                  | ✅     | ❌     |
+| Debian                   | 1        | ✅          | ❌                  | ✅     | ✅     |
+| Docker                   | 1        | ✅          | ❌                  | ✅     | ✅     |
+| Visual studio extensions | 2        | ❌ (3)      | ❌ (3)              | ❔ (3)  | ✅     |
+| Cargo                    | 2        | ✅          | ❌                  | ☑️ (2) | ❌     |
+| Go Registry              | 2        | ✅          | ❌                  | ✅     | ❌     |
+| CPAN                     | 3        | ❔           | ❌                  | ☑️ (2) | ❔     |
+| Conan                    | 3        | ✅          | ❌                  | ✅     | ❌     |
+| Conda                    | 3        | ✅          | ❌                  | ✅     | ❌     |
+| Git LFS                  | 3        | ✅          | ❌                  | ✅     | ❌     |
+| Gradle                   | 3        | ✅          | ✅                  | ❔      | ❌     |
+| Opkg                     | 3        | ✅          | ❌                  | ❔      | ❌     |
+| RubyGems                 | 3        | ✅          | ❌                  | ✅     | ✅     |
+| Bower                    | 4        | ✅          | ❌                  | ✅     | ❌     |
+| Chef                     | 4        | ✅          | ❌                  | ☑️ (2) | ❌     |
+| CocoaPods                | 4        | ✅          | ❌                  | ✅     | ❌     |
+| ELPA                     | 4        | ❔           | ❌                  | ☑️ (2) | ❔     |
+| Flex                     | 4        | ❔           | ❌                  | ☑️ (2) | ❔     |
+| P2                       | 4        | ✅          | ❌                  | ✅     | ❌    |
+| PHP Composer             | 4        | ✅          | ❌                  | ☑️ (2) | ❌    |
+| Pub Repositories         | 4        | ✅          | ❌                  | ❔      | ❌    |
+| Puppet                   | 4        | ✅          | ❌                  | ☑️ (2) | ❌    |
+| RPM                      | 4        | ✅          | ❌                  | ✅     | ❌    |
+| SBT                      | 4        | ✅          | ❌                  | ❔     | ❌     |
+| Vagrant                  | 4        | ✅          | ❌                  | ❔     | ❌     |
+| VCS                      | 4        | ✅          | ❌                  | ❔     | ❌     |
+
+* **(1)** Universal Packages are not supported on Azure DevOps Servers on premise.
+* **(2)** Nexus repository support provided by the communauty
+* **(3)** Work around to manage manually private gallery in a generic repository
+
+    * [Jfrog support](https://www.jfrog.com/jira/browse/RTFACT-7471)
+    * [Visual studio documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/private-galleries?view=vs-2022)
+
+{: .warning-title }
+> Artifactory feedbacks for NPM
+>
+> In the real life, we met somes packages corruptions issues with NPM and Artifactory V6.x / V7.x. Normally they have been fixed but we continue to have this kind of issues.
+
+:point_right: **Package type support conclusion**
+
+* Even if we don't need to have all packages types, the platform selection must be **oriented on a specialized product** for artifacts management.
+* **Jfrog Artifactory and Sonatype Nexus are the only platform** which cover all Contoso's requirements.
+* Sonatype Nexus also offers an important list of supported package types **thanks to the communauty**.
+
+  {: .note-title }
+  > Nexus communauty
+  >
+  > It could be interresting to check the communauty activites for these repositories and the complexity to provide a custom packag etype such as Visual Studio extensions.
+
+* **Indeo Proget is near to fit all requirements** except for two Contoso particular uses cases:
+
+  * CRAN which becomes a popular language for financial developments
+  * Alpine package which is required to customize Docker Linux Alpine images. If Contoso chose Centos / Redhat, this requirement would not have been mandatory.
+
+  **Indeo Proget** could be cover other enterprises' requirements
+
+* Azure DevOps service is more oriented to development activities and can't fit Infrastructure needs
+
+## Repository exposition
+
+Expose a virtual repository is a good choice to mask physical repository structures, to aggregate multiples repositories and allow platform administrators to re-arrange physical repositories without disturbing clients
+
+```mermaid
+flowchart BT
+  subgraph Artifacts platform
+    virtual-.->inhouse(In house packages)
+    virtual-.->external(External packages)
+  end
+  client(client)-->virtual(Virtual Repository)
+  style client fill:#bcee68,stroke:#333,stroke-width:4px
+  classDef blue fill:#6666ff,stroke:#333,stroke-width:4px;
+  class virtual,inhouse,external blue
+```
+
+| Virtual repository features        | Artifactory | Azure DevOps Service | Nexus | ProGet |
+| ---------------------------------- |:-----------:|:--------------------:|:-----:|:------:|
+| Virtual repository support         | ✅          | ✅                  | ?     | ✅    |
+| Resolution ordering                | ✅          | ✅                  | ?     | ?     |
+| Views filtering                    | ❌          | ✅                  | ?     | ?     |
+| Include / exclude pattern          | ✅          | ❌                  | ?     | ?     |
+| Underlying repository deployment   | ✅          | ❌                  | ?     | ?     |
+
+## References
 
 ### Package types
 
@@ -78,9 +196,12 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 | NuGet                    | Host and proxy NuGet packages in Artifactory, and pull libraries from Artifactory into your various Visual Studio .NET applications.                                |
 | PyPI                     | Host and proxy PyPI distributions with full support for pip.                                                                                                        |
 | Generic                  | Generic binaries storage.                                                                                                                                           |
+| CPAN                     | Perl programers share modules using the Comprehensive Perl Archive Network (CPAN). Consolidate module access securely through repository manager.                   |
 | CRAN                     | Deploy and resolve CRAN packages for the R language using dedicated CRAN repositories.                                                                              |
 | Debian                   | Host and provision Debian packages complete with GPG signatures.                                                                                                    |
 | Docker                   | Host your own secure private Docker registries and proxy external Docker registries such as Docker Hub.                                                             |
+| ELPA                     | Emacs users unite! Proxy an Emacs Lisp Package Archive repository.                                                                                                  |
+| Flex                     | Works the same way as Raw format, but with advanced configuration of repository components.                                                                         |
 | Visual studio extensions |                                                                                                                                                                     |
 | Cargo                    | Enhance your capabilities for configuration management with Cargo using all the benefits of a repository manager.                                                   |
 | Go Registry              | Build Go projects while resolving dependencies through Artifactory, and then publish the resulting Go packages into a secure, private Go registry                   |
@@ -102,77 +223,9 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 | Vagrant                  | Securely host your Vagrant boxes in local repositories.                                                                                                             |
 | VCS                      | Consume source files packaged as binaries.                                                                                                                          |
 
-
-## Packages types support
-{: .text-blue-300 }
-
-1. Determine the package's type that you need to support in your enterprise for development activities and for infrastructure automation.
-2. Define a weight of importance
-
-    1. Package type is mandatory because these technologies are currently used, belong of supported technologies and are not covered by an other tool
-
-    2. Package type could become a futur official technologie due to its popularity
-
-    3. Package type could be a plus for your enterprise to handle specific use case which are not covered
-
-    4. You will not plan to use this technologie
-
-
-| Package Type             | Priority | Artifactory | Azure DevOps Service | Nexus | ProGet |
-| ------------------------ |:--------:|:-----------:|:--------------------:|:-----:|:------:|
-| Alpine                   | 1        | ✅          | ❌                  | ?     | ❌     |
-| Helm                     | 1        | ✅          | ❌                  | ?     | ✅     |
-| Maven                    | 1        | ✅          | ✅                  | ?     | ✅     |
-| npm                      | 1        | ✅          | ✅                  | ?     | ✅     |
-| NuGet                    | 1        | ✅          | ✅                  | ?     | ✅     |
-| PyPI                     | 1        | ✅          | ✅                  | ?     | ✅     |
-| Generic                  | 1        | ✅          | ☑️ (1)              | ?     | ✅     |
-| CRAN                     | 1        | ✅          | ❌                  | ?     | ❌     |
-| Debian                   | 1        | ✅          | ❌                  | ?     | ✅     |
-| Docker                   | 1        | ✅          | ❌                  | ?     | ✅     |
-| Visual studio extensions | 2        | ❌          | ❌                  | ?     | ✅     |
-| Cargo                    | 2        | ✅          | ❌                  | ?     | ❌     |
-| Go Registry              | 2        | ✅          | ❌                  | ?     | ❌     |
-| Conan                    | 3        | ✅          | ❌                  | ?     | ❌     |
-| Conda                    | 3        | ✅          | ❌                  | ?     | ❌     |
-| Git LFS                  | 3        | ✅          | ❌                  | ?     | ❌     |
-| Gradle                   | 3        | ✅          | ❌                  | ?     | ❌     |
-| Opkg                     | 3        | ✅          | ❌                  | ?     | ❌     |
-| RubyGems                 | 3        | ✅          | ❌                  | ?     | ✅     |
-| Bower                    | 4        | ✅          | ❌                  | ?     | ❌     |
-| Chef                     | 4        | ✅          | ❌                  | ?     | ❌     |
-| CocoaPods                | 4        | ✅          | ❌                  | ?     | ❌     |
-| P2                       | 4        | ✅          | ❌                  | ?     | ❌     |
-| PHP Composer             | 4        | ✅          | ❌                  | ?     | ❌     |
-| Pub Repositories         | 4        | ✅          | ❌                  | ?     | ❌     |
-| Puppet                   | 4        | ✅          | ❌                  | ?     | ❌     |
-| RPM                      | 4        | ✅          | ❌                  | ?     | ❌     |
-| SBT                      | 4        | ✅          | ❌                  | ?     | ❌     |
-| Vagrant                  | 4        | ✅          | ❌                  | ?     | ❌     |
-| VCS                      | 4        | ✅          | ❌                  | ?     | ❌     |
-
-**(1)** Universal Packages are not supported on Azure DevOps Servers on premise.
-
-{: .warning-title }
-> Artifactory feedbacks for NPM
->
-> In the real life, we met somes packages corruptions issues with NPM and Artifactory V6.x and V7.x. Normally they have been fixed but we continue to have this kind of issues.
-
-:point_right: **Package type support**
-
-* Even if we don't need to have all packages types, the platform selection must be oriented on a specialized product for artifacts management.
-* Azure DevOps service is more oriented to development activities and can't fit Infrastructure needs**
-
-
 ### Sources
 
 * [Artifactory Package Management](https://www.jfrog.com/confluence/display/JFROG/Package+Management){:target="_blank"}
 * [Azure DevOps Package Management](https://docs.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops){:target="_blank"}
 * [ProGet](https://docs.inedo.com/docs/proget-packages-what-is-a-package#what-package-types-does-proget-support-){:target="_blank"}
-
-### Artifactory
-
-### Azure DevOps Server
-
-
-## Artifacts Repository
+* [Nexus](https://help.sonatype.com/repomanager3)

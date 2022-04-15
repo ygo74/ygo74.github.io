@@ -90,6 +90,8 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 
     4. You will not plan to use this technologie
 
+### Comparison analysis
+{: .text-blue-200 }
 
 | Package Type             | Priority | Artifactory | Azure DevOps Service | Nexus  | ProGet  |
 | ------------------------ |:--------:|:-----------:|:--------------------:|:------:|:-------:|
@@ -139,27 +141,29 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 >
 > In the real life, we met somes packages corruptions issues with NPM and Artifactory V6.x / V7.x. Normally they have been fixed but we continue to have this kind of issues.
 
-:point_right: **Package type support conclusion**
+### Comparison conclusion
+{: .text-blue-200 }
 
-* Even if we don't need to have all packages types, the platform selection must be **oriented on a specialized product** for artifacts management.
-* **Jfrog Artifactory and Sonatype Nexus are the only platform** which cover all Contoso's requirements.
-* Sonatype Nexus also offers an important list of supported package types **thanks to the communauty**.
+:point_right: Even if we don't need to have all packages types, the platform selection must be **oriented on a specialized product** for artifacts management.
+
+:point_right: **Jfrog Artifactory and Sonatype Nexus are the only platform** which cover all Contoso's requirements.
+
+:point_right: Sonatype Nexus also offers an important list of supported package types **thanks to the communauty**.
 
   {: .note-title }
   > Nexus communauty
   >
   > It could be interresting to check the communauty activites for these repositories and the complexity to provide a custom packag etype such as Visual Studio extensions.
 
-* **Indeo Proget is near to fit all requirements** except for two Contoso particular uses cases:
+:point_right: **Indeo Proget could be cover enterprises' requirement** It is near to fit all Contoso's requirements except for two particular uses cases:
 
-  * CRAN which becomes a popular language for financial developments
-  * Alpine package which is required to customize Docker Linux Alpine images. If Contoso chose Centos / Redhat, this requirement would not have been mandatory.
+* CRAN which becomes a popular language for financial developments
+* Alpine package which is required to customize Docker Linux Alpine images. If Contoso chose Centos / Redhat, this requirement would not have been mandatory.
 
-  **Indeo Proget** could be cover other enterprises' requirements
-
-* Azure DevOps service is more oriented to development activities and can't fit Infrastructure needs
+:point_right: **Azure DevOps service is more oriented to development activities** and can't fit Infrastructure needs
 
 ## Repository exposition
+{: .text-blue-300 }
 
 Expose a virtual repository is a good choice to mask physical repository structures, to aggregate multiples repositories and allow platform administrators to re-arrange physical repositories without disturbing clients
 
@@ -177,11 +181,11 @@ flowchart BT
 
 | Virtual repository features        | Artifactory | Azure DevOps Service | Nexus | ProGet |
 | ---------------------------------- |:-----------:|:--------------------:|:-----:|:------:|
-| Virtual repository support         | ✅          | ✅                  | ?     | ✅    |
-| Resolution ordering                | ✅          | ✅                  | ?     | ?     |
-| Views filtering                    | ❌          | ✅                  | ?     | ?     |
-| Include / exclude pattern          | ✅          | ❌                  | ?     | ?     |
-| Underlying repository deployment   | ✅          | ❌                  | ?     | ?     |
+| Virtual repository support         | ✅          | ✅                  | ❔     | ✅    |
+| Resolution ordering                | ✅          | ✅                  | ❔     | ❔     |
+| Views filtering                    | ❌          | ✅                  | ❔     | ❔     |
+| Include / exclude pattern          | ✅          | ❌                  | ❔     | ❔     |
+| Underlying repository deployment   | ✅          | ❌                  | ❔     | ❔     |
 
 ## References
 
@@ -228,4 +232,4 @@ flowchart BT
 * [Artifactory Package Management](https://www.jfrog.com/confluence/display/JFROG/Package+Management){:target="_blank"}
 * [Azure DevOps Package Management](https://docs.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops){:target="_blank"}
 * [ProGet](https://docs.inedo.com/docs/proget-packages-what-is-a-package#what-package-types-does-proget-support-){:target="_blank"}
-* [Nexus](https://help.sonatype.com/repomanager3)
+* [Nexus](https://help.sonatype.com/repomanager3){:target="_blank"}

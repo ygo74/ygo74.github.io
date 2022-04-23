@@ -2,6 +2,6 @@
   <p class="text-small text-grey-dk-100 mb-0">{{ site.footer_content }}</p>
 {%- endif -%}
 
-{% if page.mermaid %}
-  {% include mermaid.html %}
-{% endif %}
+{%- if page.mermaid -%}
+  {%- include mermaid.html -%}
+{%- endif -%}

@@ -32,12 +32,12 @@ The study will compare:
 
 Before choosing the platform, it is mandatory to have a complete analysis of uses cases to be covered:
 
-* Why do i need repositories ?
-* Do we have Internet access from workstations, from servers ?
-* How do we want manage external packages, in-house packages ?
-* Can we trust downloaded packages ?
+* Why do I need repositories ?
+* Do I have Internet access from workstations, from servers ?
+* How do I want to manage external packages, in-house packages ?
+* Can I trust downloaded packages ?
 * What is the estimated size of storage ?
-* How do we manage obsolescence ?
+* How do I want to manage packages / applications lifecycle ?
 
 {: .important-title }
 > Contoso requirements
@@ -162,30 +162,85 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 
 :point_right: **Azure DevOps service is more oriented to development activities** and can't fit Infrastructure needs
 
-## Repository exposition
+## Repository management features
 {: .text-blue-300 }
 
-Expose a virtual repository is a good choice to mask physical repository structures, to aggregate multiples repositories and allow platform administrators to re-arrange physical repositories without disturbing clients
+### Features analysis
 
-```mermaid
-flowchart BT
-  subgraph Artifacts platform
-    virtual-.->inhouse(In house packages)
-    virtual-.->external(External packages)
-  end
-  client(client)-->virtual(Virtual Repository)
-  style client fill:#bcee68,stroke:#333,stroke-width:4px
-  classDef blue fill:#6666ff,stroke:#333,stroke-width:4px;
-  class virtual,inhouse,external blue
-```
+1. Virtual Repository
 
-| Virtual repository features        | Artifactory | Azure DevOps Service | Nexus | ProGet |
-| ---------------------------------- |:-----------:|:--------------------:|:-----:|:------:|
-| Virtual repository support         | ✅          | ✅                  | ❔     | ✅    |
-| Resolution ordering                | ✅          | ✅                  | ❔     | ❔     |
-| Views filtering                    | ❌          | ✅                  | ❔     | ❔     |
-| Include / exclude pattern          | ✅          | ❌                  | ❔     | ❔     |
-| Underlying repository deployment   | ✅          | ❌                  | ❔     | ❔     |
+    Expose a virtual repository is a good choice to mask physical repository structures, to aggregate multiples repositories and allow platform administrators to re-arrange physical repositories without disturbing clients.
+
+    ```mermaid
+    flowchart BT
+      subgraph Artifacts platform
+        virtual-.->inhouse(In house packages)
+        virtual-.->external(External packages)
+      end
+      client(client)-->virtual(Virtual Repository)
+      style client fill:#bcee68,stroke:#333,stroke-width:4px
+      classDef blue fill:#6666ff,stroke:#333,stroke-width:4px;
+      class virtual,inhouse,external blue
+    ```
+
+2. Remote Repository
+
+    This kind of repository allow to centralize internet access and to cache locally packages, therefore decrease latency and bandwith to download packages.
+    They also act as a gateway which can be monitored for vulnerabilities and licences controls.
+
+3. Repository Replication
+
+    Capacity to replicate artifacts between repositories can be an important tools to manage platform, for sample to replicate artifacts between 2 distincts platforms which are seggregated for differents reasons (security, tests, geographic locations)
+
+4. Repository cleaning
+
+    Capacity to auto clean artifacts which are not downloaded since a long time can be helpfull to decrease the storage space
+
+5. Artifacts storage
+
+    Technology used to store artifacts can have an important impact on the storage size because we can find same artifacts in different repositories
+
+6. Artifcats promotion
+
+    Capacity to copy / move artifacts between repositories according the artifacts' lifecycle (development, tests, production ready) can help to track artifacts status, put in place a delivery workflow, ensure artifacts delivey to correct target depending their status
+
+    ```mermaid
+    flowchart LR
+      subgraph Artifacts platform
+        dev-.->tests(Tests repository)
+        tests-.->prod(Production repository)
+      end
+      client(Build Servers)-->dev(Development Repository)
+      style client fill:#bcee68,stroke:#333,stroke-width:4px
+      classDef blue fill:#6666ff,stroke:#333,stroke-width:4px;
+      class dev,tests,prod blue
+    ```
+
+7. Repository security
+
+### Features comparison
+
+| Repository features                | Sub features                             | Artifactory | Azure DevOps Service | Nexus | ProGet |
+| ---------------------------------- | ---------------------------------------- |:-----------:|:--------------------:|:-----:|:------:|
+| Virtual Repository                 | Virtual repository support               | ✅          | ✅                  | ❔     | ✅   |
+|                                    | Resolution ordering                      | ✅          | ✅                  | ❔     | ❔    |
+|                                    | Views filtering                          | ❌          | ✅                  | ❔     | ❔    |
+|                                    | Include / exclude pattern                | ✅          | ❌                  | ❔     | ❔    |
+|                                    | Underlying repository deployment         | ✅          | ❌                  | ❔     | ❔    |
+| Remote Repository                  | Remote Repository support                | ✅          | ✅                  | ❔     | ✅   |
+|                                    | Local cache                              | ✅          | ✅                  | ❔     | ❔    |
+|                                    | Local cache management                   | ✅          | ✅                  | ❔     | ❔    |
+|                                    | Include / exclude pattern                | ✅          | ❌                  | ❔     | ❔    |
+|                                    | Advanced remote connection configuration | ✅          | ❌                  | ❔     | ❔    |
+| Repository Replication             | Repository Replication support           | ✅          | ❔                   | ❔     | ❔    |
+|                                    | Scheduler                                | ✅          | ❔                   | ❔     | ❔    |
+|                                    | Real time replication                    | ✅          | ❔                   | ❔     | ❔    |
+|                                    | Multiple destinations                    | ✅ (1)      | ❔                   | ❔     | ❔    |
+|                                    | Action type filtering                    | ✅          | ❔                   | ❔     | ❔    |
+| Repository Cleaning                | Repository Cleaning support              | ☑️ (2)      | ❔                   | ❔     | ❔    |
+| Artifacts storage                  |                                          | ❔           | ❔                   | ❔     | ❔    |
+| Artifcats promotion                | Artifcats promotion support              | ✅          | ❔                   | ❔     | ❔    |
+| Repository security                | Repository security support              | ✅          | ❔                   | ❔     | ❔    |
 
 ## References
 

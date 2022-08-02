@@ -42,6 +42,15 @@ It is important to have a clean and well defined methodology for development ste
 
 3. **Setup** Continuous Integration
 
+## **Define** applications' integration rules
+{: .text-blue-300 }
+
+1. **Hosting Target**
+
+2. **API styles**
+
+
+
 ## Sources
 
 * [Clean Architecture](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures#clean-architecture)

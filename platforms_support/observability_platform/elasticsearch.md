@@ -16,6 +16,18 @@ has_children: false
 {:toc}
 </details>
 
+The Elasticsearch deployment defined below has been validated with the following components:
+
+* Docker on Windows v4.11.1 (Use WSL 2 based engine)
+* Docker-compose v2.7.0
+* Elasticsearch stack v8.3.2
+
+Even if personal deployment, the following configuration tries to follow security best practices because real configuration needs some complex configuration which are often hard to find.
+
+Certificates used are slef-signed but can be easily replaced by enterprises' certificates signed by your enterprise authority.
+
+The full implementation can be found on the ansible inventory github repository in the monitoring folder.
+
 ## Architecture
 {: .text-blue-300 }
 
@@ -127,15 +139,41 @@ Certificates are needed for:
 
 **TODO**
 
+### Environments variable for Docker compose
+
+Some configuration are shared in the docker compose file thanks to the environment variables file **.env**
+
+**TODO Retrieve the full file after verification of potential variables in docker compose file**
+
+```ini
+# -----------------------------------------------------------------------------
+# Common variables
+# -----------------------------------------------------------------------------
+
+# Version of Elastic products
+STACK_VERSION=8.3.2
+
+# Project namespace (defaults to the current folder name if not set)
+#COMPOSE_PROJECT_NAME=myproject
+
+...
+```
+
 ## Elasticsearch deployment
 {: .text-blue-300 }
 
+### Elasticsearch monitoring status
+
 https://localhost:9200/_cluster/health?wait_for_status=yellow
+
+### Elasticsearch resources
+
+* [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html?baymax=rec&rogue=pop-1&elektra=guide)
 
 ## Kibana deployment
 {: .text-blue-300 }
 
-### Elastic search connection
+### Kibana connection to Elastic search
 {: .text-blue-200 }
 
 ```yaml
@@ -152,78 +190,99 @@ kibana:
     - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
 ```
 
-### Define integration policies
+### Kibana integration policies configuration
 {: .text-blue-200 }
 
-It is possible to create integration policies from the kibana configuration file.
+It is possible to create integration policies from the kibana configuration file **/usr/share/kibana/config/kibana.yml**.
+This file will be shared from the docker hosts thanks to volumes mount :
+
+```yaml
+volumes:
+  ...
+  - "./configuration/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml"
+  ...
+```
+
 We will initialize our deployment with 2 required policies:
 
 * Fleet server
 * APM
 
-```yaml
-# https://www.elastic.co/guide/en/fleet/master/create-a-policy-no-ui.html
-xpack.fleet.packages:
-  # - name: system
-  #   version: latest
-  # - name: elastic_agent
-  #   version: latest
-  - name: fleet_server
-    version: latest
-  - name: apm
-    version: latest
+Integration policies are defined under the key **xpack.fleet.agentPolicies**
 
-xpack.fleet.agentPolicies:
-  - name: Fleet Server (APM)
-    id: fleet-server-apm
-    is_default_fleet_server: true
-    is_managed: false
-    namespace: default
-    package_policies:
-      - name: fleet_server-apm
-        id: default-fleet-server
-        package:
-          name: fleet_server
-  - name: APM Server from elastic agent
-    id: apm-1-server
-    is_default: true
-    unenroll_timeout: 900
-    package_policies:
-      - name: apm-1-server
+1. Deploy required packages for these integration policies
+
+    ```yaml
+    # https://www.elastic.co/guide/en/fleet/master/create-a-policy-no-ui.html
+    xpack.fleet.packages:
+      - name: system
+        version: latest
+      - name: elastic_agent
+        version: latest
+      - name: fleet_server
+        version: latest
+      - name: apm
+        version: latest
+    ```
+
+2. Enable Fleet policy and configure default outputs
+
+    ```yaml
+    xpack.fleet.agentPolicies:
+      - name: Fleet Server (APM)
+        id: fleet-server-apm
+        is_default_fleet_server: true
+        is_managed: false
+        namespace: default
+        package_policies:
+          - name: fleet_server-apm
+            id: default-fleet-server
+            package:
+              name: fleet_server
+
+    ```
+
+    As for policies, we can also configure the default outputs for agents in the kibana configuration file.
+    We will initialize the default outputs to be able to send encrypted data to elastic search
+
+    ```yaml
+    xpack.fleet.outputs:
+      - id: fleet-default-output
+        name: default
+        is_default: true
+        is_default_monitoring: true
+        type: elasticsearch
+        hosts: ['https://es01:9200']
+        config:
+          ssl.certificate_authorities: ["/usr/share/elastic-agent/config/certs/ca/ca.crt"]
+
+    ```
+
+3. Enable APM Policy and configure APM server
+
+    ```yaml
+    xpack.fleet.agentPolicies:
+      - name: APM Server from elastic agent
         id: apm-1-server
-        package:
-          name: apm
-        inputs:
-        - type: apm
-          enabled: true
-          vars:
-          - name: host
-            value: apm-server:8200
-          - name: url
-            value: http://apm-server:8200
+        is_default: true
+        unenroll_timeout: 900
+        package_policies:
+          - name: apm-1-server
+            id: apm-1-server
+            package:
+              name: apm
+            inputs:
+            - type: apm
+              enabled: true
+              vars:
+              - name: host
+                value: apm-server:8200
+              - name: url
+                value: http://apm-server:8200
 
-```
+    ```
 
-### Configure agents output
-{: .text-blue-200 }
-
-As for policies, we can also configure the default outputs for agents in the kibana configuration file.
-We will initialize the default outputs to be able to send encrypted data to elastic search
-
-```yaml
-xpack.fleet.outputs:
-  - id: fleet-default-output
-    name: default
-    is_default: true
-    is_default_monitoring: true
-    type: elasticsearch
-    hosts: ['https://es01:9200']
-    config:
-      ssl.certificate_authorities: ["/usr/share/elastic-agent/config/certs/ca/ca.crt"]
-
-```
-
-### SSL Configuration
+### Kibana enable SSL Listener
 {: .text-blue-200 }
 
 The main configuration for SSL will be applied from environment variables in the docker compose file:
@@ -265,7 +324,7 @@ csp.strict: true
 
 ```
 
-### FLEET Server integration
+### Kibana enable Fleet Server integration
 {: .text-blue-200 }
 
 ```yaml
@@ -289,14 +348,14 @@ kibana:
 > * xpack.security.encryptionKey
 > * xpack.encryptedSavedObjects.encryptionKey
 
-### Monitoring status
+### Kibana monitoring status
 {: .text-blue-200 }
 
 Kibana provides rest API to obtain its healtch check status:
 
 * api/status
 
-### Full configuration sample
+### Kibana full configuration sample
 {: .text-blue-200 }
 
 1. Docker compose service
@@ -436,7 +495,7 @@ Kibana provides rest API to obtain its healtch check status:
             type: pattern
     ```
 
-### Resources
+### Kibana resources
 {: .text-blue-200 }
 
 * [Kibana in Docker](https://www.elastic.co/guide/en/kibana/current/docker.html){:target="_blank"}
@@ -451,17 +510,102 @@ Kibana provides rest API to obtain its healtch check status:
 
 Fleet server is a component used to manage agents from a centralized point. It is available from the elastic-agent binary
 
-### Elastic search connection
+### Fleet server connection to Elastic search
 {: .text-blue-200 }
 
-### Monitoring status
+```yaml
+fleet-server:
+  image: docker.elastic.co/beats/elastic-agent:${STACK_VERSION}
+  ...
+  environment:
+    # Elastic search connection
+    ELASTICSEARCH_HOST: https://es01:9200
+    ELASTICSEARCH_USERNAME: "${ES_SUPERUSER_USER:-elastic}"
+    ELASTICSEARCH_PASSWORD: "${ELASTIC_PASSWORD:-changeme}"
+    ELASTICSEARCH_CA:  /usr/share/elastic-agent/config/certs/ca/ca.crt
+    ...
+```
+
+### Fleet server connection to Kibana
 {: .text-blue-200 }
 
-Fleet provides rest API to obtain its healtch check status:
+```yaml
+fleet-server:
+  image: docker.elastic.co/beats/elastic-agent:${STACK_VERSION}
+  ...
+  environment:
+    # Kibana connection
+    KIBANA_HOST: "https://kibana:${KIBANA_PORT}"
+    KIBANA_USERNAME: "${ES_SUPERUSER_USER:-elastic}"
+    KIBANA_PASSWORD: "${ELASTIC_PASSWORD:-changeme}"
+    ...
+```
+
+### Fleet server configuration
+
+The configuration is divided into 2 blocsk :
+
+* Enable fleet server function in the elastic agent
+
+    {: .warning-title }
+    > Link fleet server to its enrollment policy
+    >
+    > The policy for fleet server integration has been defined in the Kibana configuration file in **xpack.fleet.agentPolicies** key.
+    > The id value is the key used to enroll the server in its policy and is specified with the environment Variable **FLEET_SERVER_POLICY_ID**
+
+* Configure fleet server into Kibana
+
+```yaml
+fleet-server:
+  image: docker.elastic.co/beats/elastic-agent:${STACK_VERSION}
+  ...
+  environment:
+    ...
+    # Bootstrap Fleet server
+    FLEET_SERVER_ENABLE: "1"
+    # FLEET_SERVER_ELASTICSEARCH_HOST: https://es01:9200
+    # FLEET_SERVER_ELASTICSEARCH_CA:  /usr/share/elastic-agent/config/certs/ca/ca.crt
+    # FLEET_SERVER_SERVICE_TOKEN: b0RUUmw0SUI1X1FkdnNlM2FMWGs6SmlKYk4xZzJUWjZFM3EzX19NM0NzUQ==
+    # FLEET_SERVER_POLICY_ID: "fleet-server-policy"
+    FLEET_SERVER_POLICY_ID: "fleet-server-apm"
+    FLEET_SERVER_ELASTICSEARCH_USERNAME: "${ES_SUPERUSER_USER:-elastic}"
+    FLEET_SERVER_ELASTICSEARCH_PASSWORD: "${ELASTIC_PASSWORD:-changeme}"
+    FLEET_URL: https://fleet-server:8220
+    FLEET_SERVER_ELASTICSEARCH_INSECURE: true
+    FLEET_SERVER_INSECURE_HTTP: true
+    FLEET_INSECURE: true
+
+    # Prepare Kibana for Fleet
+    KIBANA_FLEET_SETUP: "1"
+    KIBANA_FLEET_HOST: "https://kibana:${KIBANA_PORT}"
+    # KIBANA_FLEET_USERNAME: "${ES_SUPERUSER_USER:-elastic}"
+    # KIBANA_FLEET_PASSWORD: "${ELASTIC_PASSWORD:-changeme}"
+    ...
+```
+
+### Fleet server enable SSL listener
+
+```yaml
+fleet-server:
+  image: docker.elastic.co/beats/elastic-agent:${STACK_VERSION}
+  ...
+  environment:
+    ...
+    #  Enable fleet server SSL
+    FLEET_SERVER_CERT: /usr/share/elastic-agent/config/certs/fleet-server/fleet-server.crt
+    FLEET_SERVER_CERT_KEY: /usr/share/elastic-agent/config/certs/fleet-server/fleet-server.key
+    CERTIFICATE_AUTHORITIES:  /usr/share/elastic-agent/config/certs/ca/ca.crt
+    ...
+```
+
+### Fleet server monitoring status
+{: .text-blue-200 }
+
+Fleet server provides rest API to obtain its healtch check status:
 
 * api/status
 
-### Resources
+### Fleet server resources
 {: .text-blue-200 }
 
 * [Fleet server environment variables](https://www.elastic.co/guide/en/fleet/current/agent-environment-variables.html){:target="_blank"}

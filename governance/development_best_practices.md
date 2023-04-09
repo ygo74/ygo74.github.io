@@ -16,7 +16,6 @@ nav_order: 7
 </details>
 
 ## **Define** work methodology
-{: .text-blue-300 }
 
 It is important to have a clean and well defined methodology for development steps. It should ensure to have the building blocks for DevOps ready at the begining of your project and avoid breaking issues as "No budget, no time,..."
 
@@ -43,7 +42,6 @@ It is important to have a clean and well defined methodology for development ste
 3. **Setup** Continuous Integration
 
 ## **Define** applications' integration rules
-{: .text-blue-300 }
 
 1. **Hosting Target**
 

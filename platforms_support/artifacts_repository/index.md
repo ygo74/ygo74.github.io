@@ -28,7 +28,6 @@ The study will compare:
 * Indeo ProGet in **V6.x**
 
 ## Requirements Definition
-{: .text-blue-300 }
 
 Before choosing the platform, it is mandatory to have a complete analysis of uses cases to be covered:
 
@@ -77,7 +76,6 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 > * Packages storage, naming conventions and versioning schemes must be enforced
 
 ## Packages types support
-{: .text-blue-300 }
 
 1. Determine the package's type that you need to support in your enterprise for development activities and for infrastructure automation.
 2. Define a weight of importance
@@ -91,7 +89,6 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
     4. You will not plan to use this technologie
 
 ### Comparison analysis
-{: .text-blue-200 }
 
 | Package Type             | Priority | Artifactory | Azure DevOps Service | Nexus  | ProGet  |
 | ------------------------ |:--------:|:-----------:|:--------------------:|:------:|:-------:|
@@ -142,7 +139,6 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 > In the real life, we met somes packages corruptions issues with NPM and Artifactory V6.x / V7.x. Normally they have been fixed but we continue to have this kind of issues.
 
 ### Comparison conclusion
-{: .text-blue-200 }
 
 :point_right: Even if we don't need to have all packages types, the platform selection must be **oriented on a specialized product** for artifacts management.
 
@@ -163,7 +159,6 @@ Before choosing the platform, it is mandatory to have a complete analysis of use
 :point_right: **Azure DevOps service is more oriented to development activities** and can't fit Infrastructure needs
 
 ## Repository management features
-{: .text-blue-300 }
 
 ### Features analysis
 

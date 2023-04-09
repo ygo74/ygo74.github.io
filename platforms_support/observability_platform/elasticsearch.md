@@ -29,14 +29,10 @@ Certificates used are self-signed but can be easily replaced by enterprises' cer
 The full implementation can be found on the ansible inventory github repository in the monitoring folder.
 
 ## Architecture
-{: .text-blue-300 }
-
 
 ## Prerequisites
-{: .text-blue-300 }
 
 ### Certificates
-{: .text-blue-200 }
 
 Certificates are needed for:
 
@@ -135,7 +131,6 @@ Certificates are needed for:
     **TODO**
 
 ### Users
-{: .text-blue-200 }
 
 **TODO**
 
@@ -160,7 +155,6 @@ STACK_VERSION=8.3.2
 ```
 
 ## Elasticsearch deployment
-{: .text-blue-300 }
 
 ### Elasticsearch monitoring status
 
@@ -171,10 +165,8 @@ https://localhost:9200/_cluster/health?wait_for_status=yellow
 * [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html?baymax=rec&rogue=pop-1&elektra=guide)
 
 ## Kibana deployment
-{: .text-blue-300 }
 
 ### Kibana connection to Elastic search
-{: .text-blue-200 }
 
 ```yaml
 kibana:
@@ -191,7 +183,6 @@ kibana:
 ```
 
 ### Kibana integration policies configuration
-{: .text-blue-200 }
 
 It is possible to create integration policies from the kibana configuration file **/usr/share/kibana/config/kibana.yml**.
 This file will be shared from the docker hosts thanks to volumes mount :
@@ -283,7 +274,6 @@ Integration policies are defined under the key **xpack.fleet.agentPolicies**
     ```
 
 ### Kibana enable SSL Listener
-{: .text-blue-200 }
 
 The main configuration for SSL will be applied from environment variables in the docker compose file:
 
@@ -325,7 +315,6 @@ csp.strict: true
 ```
 
 ### Kibana enable Fleet Server integration
-{: .text-blue-200 }
 
 ```yaml
 kibana:
@@ -349,14 +338,12 @@ kibana:
 > * xpack.encryptedSavedObjects.encryptionKey
 
 ### Kibana monitoring status
-{: .text-blue-200 }
 
 Kibana provides rest API to obtain its healtch check status:
 
 * api/status
 
 ### Kibana full configuration sample
-{: .text-blue-200 }
 
 1. Docker compose service
 
@@ -496,7 +483,6 @@ Kibana provides rest API to obtain its healtch check status:
     ```
 
 ### Kibana resources
-{: .text-blue-200 }
 
 * [Kibana in Docker](https://www.elastic.co/guide/en/kibana/current/docker.html){:target="_blank"}
 * [Kibana environment variables](https://www.elastic.co/guide/en/kibana/8.3/docker.html#environment-variable-config){:target="_blank"}
@@ -506,12 +492,10 @@ Kibana provides rest API to obtain its healtch check status:
 * [Logging configuration](https://www.elastic.co/guide/en/kibana/master/logging-configuration.html#logging-appenders){:target="_blank"}
 
 ## Fleet server deployment
-{: .text-blue-300 }
 
 Fleet server is a component used to manage agents from a centralized point. It is available from the elastic-agent binary
 
 ### Fleet server connection to Elastic search
-{: .text-blue-200 }
 
 ```yaml
 fleet-server:
@@ -527,7 +511,6 @@ fleet-server:
 ```
 
 ### Fleet server connection to Kibana
-{: .text-blue-200 }
 
 ```yaml
 fleet-server:
@@ -599,13 +582,11 @@ fleet-server:
 ```
 
 ### Fleet server monitoring status
-{: .text-blue-200 }
 
 Fleet server provides rest API to obtain its healtch check status:
 
 * api/status
 
 ### Fleet server resources
-{: .text-blue-200 }
 
 * [Fleet server environment variables](https://www.elastic.co/guide/en/fleet/current/agent-environment-variables.html){:target="_blank"}

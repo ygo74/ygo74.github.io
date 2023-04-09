@@ -16,7 +16,6 @@ nav_order: 6
 </details>
 
 ## Global rules
-{: .text-blue-300 }
 
 * There is two kinds of artifacts produced by developers which have a different lifecycle and management rules
 
@@ -32,5 +31,3 @@ nav_order: 6
 * Artifacts are versioned with semantic or calendar scheme
 
 ## Tools
-{: .text-blue-300 }
-

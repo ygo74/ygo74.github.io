@@ -17,7 +17,6 @@ Enterprise architects should support the initiative and define high levels rules
 </details>
 
 ## DevOps specific organization
-{: .text-blue-300 }
 
 We need to define an organization to support DevOps deployment and strategy. The main componenrt of this organization is to have a committee with the followings purpose :
 
@@ -30,7 +29,6 @@ We need to define an organization to support DevOps deployment and strategy. The
 ![DevOps committee overview](../assets/images/devopscommittee.png)
 
 ### Committee members
-{: .text-blue-200 }
 
 The committee's legitimacy must be natural based on members experiences in the development, deployment and infrastructure :
 
@@ -46,22 +44,16 @@ The committee's legitimacy must be natural based on members experiences in the d
 > It is important that members will be free to work for the committee.
 
 ### DevOps goals
-{: .text-blue-200 }
 
 ### Teams needs and issues identification
-{: .text-blue-200 }
 
 ### Rules and best practices defintion
-{: .text-blue-200 }
 
 * [Artifacts Management](./artifacts_management.md)
 
 ## Communication tools
-{: .text-blue-300 }
-
 
 ## Development best practices
-{: .text-blue-300 }
 
 * All teams follow development best practices defined at enterprise level
 
@@ -85,4 +77,3 @@ The committee's legitimacy must be natural based on members experiences in the d
 * Third party components (packages) are limited
 
   The number of packages grows exponentially with multiplication of components. Usage of new component must follow strict rules
-

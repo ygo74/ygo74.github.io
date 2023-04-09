@@ -7,3 +7,7 @@ has_children: false
 ---
 
 ## Build Servers
+
+### Azure Devops services
+
+* Tools : <https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md>

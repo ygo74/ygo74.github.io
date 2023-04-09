@@ -33,12 +33,12 @@ github_username:  ygo74
 #   - jekyll-feed
 # remote_theme: pages-themes/hacker@v0.2.0
 # remote_theme: pmarsceill/just-the-docs
-remote_theme: pdmosses/just-the-docs@callouts
+remote_theme: just-the-docs/just-the-docs@v0.4.2
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
-- jekyll-menus
-- jemoji
-- jekyll-avatar
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-menus
+  - jemoji
+  - jekyll-avatar
 
 
 # Exclude from processing.

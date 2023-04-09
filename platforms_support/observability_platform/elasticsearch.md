@@ -24,7 +24,7 @@ The Elasticsearch deployment defined below has been validated with the following
 
 Even if personal deployment, the following configuration tries to follow security best practices because real configuration needs some complex configuration which are often hard to find.
 
-Certificates used are slef-signed but can be easily replaced by enterprises' certificates signed by your enterprise authority.
+Certificates used are self-signed but can be easily replaced by enterprises' certificates signed by your enterprise authority.
 
 The full implementation can be found on the ansible inventory github repository in the monitoring folder.
 
